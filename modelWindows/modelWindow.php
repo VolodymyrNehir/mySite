@@ -21,8 +21,9 @@
                         <input type="text" class="form-control" id="lastName" name="lastName">
                     </div>
                     <div class="flexSwitchCheckChecked">
+                        <span>Status</span>
                         <div class="form-check form-switch ">
-                            <label class="form-check-label" for="flexSwitchCheckChecked">Status</label>
+                            <label class="form-check-label" for="flexSwitchCheckChecked"></label>
                             <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" name="status">
                         </div>
                     </div>
