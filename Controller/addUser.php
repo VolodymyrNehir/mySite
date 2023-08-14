@@ -4,8 +4,8 @@ include_once '../Model/Model.php';
 $userId = $_POST['userId'];
 $lastName = trim(filter_var($_POST['lastName'], FILTER_SANITIZE_STRING));
 $firstName = trim(filter_var($_POST['firstName'], FILTER_SANITIZE_STRING));
-$status = trim(filter_var($_POST['status'], FILTER_SANITIZE_STRING));
-$role = trim(filter_var($_POST['role'], FILTER_SANITIZE_STRING));
+$status = $_POST['status'];
+$role = $_POST['role'];
 
 
 
