@@ -15,9 +15,7 @@
 
     <div class="conteiner">
         <strong>Users</strong>
-        <p class="warning"></p>
         <?php require 'View/select.php' ?>
-
 
         <table class="tableUsers">
             <thead>

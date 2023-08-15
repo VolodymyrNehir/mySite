@@ -67,12 +67,6 @@ td, th {
     background: none;
 }
 
-
-.warning {
-    display: none;
-    color: red;
-}
-
 .flexSwitchCheckChecked {
     padding: 5% 0 5% 0;
 }
