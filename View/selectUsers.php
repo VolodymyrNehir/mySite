@@ -10,7 +10,7 @@ $users = $pdo->selectUsers();
          <tr id="<?= $user['id']?>" status="<?= $user['status'] ?>">
              <th><input type="checkbox" class="check"></th>
              <td>
-                 <span scope="col" class="firstName"><?= $user['firestName'] ?></span>
+                 <span scope="col" class="firstName"><?= $user['firstName'] ?></span>
                  <span class="lastName"><?= $user['lastName'] ?></span>
              </td>
              <td class="role"><?= $user['role'] ?></td>

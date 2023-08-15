@@ -7,7 +7,7 @@ class Model
     public function __construct()
     {
         $host = 'localhost:8889';
-        $db = 'saitAdmin';
+        $db = 'users';
         $user = 'root';
         $password = 'root';
         try {
@@ -19,16 +19,15 @@ class Model
 
     }
 
-
     public function getById($id)
     {
-        $query = $this->pdo->query("SELECT * FROM `administrstor` WHERE `administrstor`.`id` = $id");
+        $query = $this->pdo->query("SELECT * FROM `users` WHERE `users`.`id` = $id");
         return $query->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function addUser($lastName, $firstName, $role, $status)
     {
-        $sql = "INSERT INTO `administrstor` (`id`, `lastName`, `firestName`, `role`, `status`) VALUES (NULL, ?, ?, ?, ?)";
+        $sql = "INSERT INTO `users` (`id`, `lastName`, `firstName`, `role`, `status`) VALUES (NULL, ?, ?, ?, ?)";
         $prepare = $this->pdo->prepare($sql);
         $prepare->execute([$lastName, $firstName, $role, $status]);
         return $this->pdo->lastInsertId();
@@ -36,32 +35,33 @@ class Model
 
     public function deleteUsers($id)
     {
-        $sql = "DELETE FROM `administrstor` WHERE `administrstor`.`id` = $id";
+        $sql = "DELETE FROM `users` WHERE `users`.`id` = $id";
         $prepare = $this->pdo->prepare($sql);
         $prepare->execute();
-
     }
 
     public function upUsers($id, $lastName, $firstName, $role, $status)
     {
-        $sql = "UPDATE `administrstor` SET `lastName` = ?, `firestName` = ?, `role` = ?, `status` = ? WHERE `administrstor`.`id` = $id";
+        $sql = "UPDATE `users` SET `lastName` = ?, `firstName` = ?, `role` = ?, `status` = ? WHERE `users`.`id` = $id";
         $prepare = $this->pdo->prepare($sql);
         $prepare->execute([$lastName, $firstName, $role, $status]);
+
     }
 
     public function setAction($id, $status)
     {
-        $sql = "UPDATE `administrstor` SET `status` = ? WHERE `administrstor`.`id`=$id";
+
+        $sql = "UPDATE `users` SET `status` = ? WHERE `users`.`id`=$id";
         $prepare = $this->pdo->prepare($sql);
         $prepare->execute([$status]);
     }
 
     public function selectUsers()
     {
-        $query = $this->pdo->query('SELECT * FROM `administrstor`');
+        $query = $this->pdo->query('SELECT * FROM `users`');
         return $query->fetchAll(PDO::FETCH_ASSOC);
-    }
 
+    }
 
 }
 

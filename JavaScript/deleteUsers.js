@@ -1,7 +1,6 @@
 
 $(document).on('click','.btn2', function (){
     const userId = $(this).closest('tr').attr('id');
-    console.log(userId);
     $("#exampleModalDelete").modal('show');
     $('#inputHiddenDelete').val(`["${userId}"]`)
     const lastName = $(`#${userId} .lastName`).text();

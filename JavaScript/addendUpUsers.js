@@ -17,14 +17,13 @@ $(function () {
             type: 'POST',
             cache: false,
             data: {'userId': userId, 'lastName': lastName, 'firstName': firstName, 'status': status, 'role': role},
-            dataType: 'html',
             success: function (data) {
                 const jsonData = JSON.parse(data);
                 if (jsonData.status == 'false') {
                     $('.errorWindow').text(jsonData.error.message).css('color', 'red');
                 } else if (userId !== '"null"') {
                     $(`#${userId} .lastName`).text(`${jsonData.user.lastName}`);
-                    $(`#${userId} .firstName`).text(`${jsonData.user.firestName}`);
+                    $(`#${userId} .firstName`).text(`${jsonData.user.firstName}`);
                     $(`#${userId}`).attr('status', `${jsonData.user.status}`);
                     $(`#${userId} .role`).text(`${jsonData.user.role}`);
                     $("#exampleModal").modal('hide');
@@ -33,7 +32,7 @@ $(function () {
     <tr id="${jsonData.user.id}" status="${jsonData.user.status}">
         <th><input type="checkbox" class="check"></th>
         <td>
-            <span scope="col" class="firstName">${jsonData.user.firestName}</span>
+            <span scope="col" class="firstName">${jsonData.user.firstName}</span>
             <span class="lastName">${jsonData.user.lastName}</span>
         </td>
         <td class="role">${jsonData.user.role}</td>
