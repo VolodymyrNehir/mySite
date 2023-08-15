@@ -17,13 +17,12 @@ $(function () {
             type: 'POST',
             cache: false,
             data: {'userId': userId, 'lastName': lastName, 'firstName': firstName, 'status': status, 'role': role},
-            dataType: 'json',
+            dataType: 'html',
             success: function (data) {
                 const jsonData = JSON.parse(data);
                 if (jsonData.status == 'false') {
                     $('.errorWindow').text(jsonData.error.message).css('color', 'red');
                 } else if (userId !== '"null"') {
-                    console.log(userId)
                     $(`#${userId} .lastName`).text(`${jsonData.user.lastName}`);
                     $(`#${userId} .firstName`).text(`${jsonData.user.firestName}`);
                     $(`#${userId}`).attr('status', `${jsonData.user.status}`);
