@@ -17,7 +17,6 @@ $('.btnDelete').on('click', function () {
         type: 'POST',
         cache: false,
         data: {"userId": userId},
-        dataType: "html",
         success() {
             userId.forEach(item => {
                 $(`#${item}`).remove();

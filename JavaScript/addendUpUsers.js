@@ -17,7 +17,7 @@ $(function () {
             type: 'POST',
             cache: false,
             data: {'userId': userId, 'lastName': lastName, 'firstName': firstName, 'status': status, 'role': role},
-            dataType: 'html',
+            dataType: 'json',
             success: function (data) {
                 const jsonData = JSON.parse(data);
                 if (jsonData.status == 'false') {

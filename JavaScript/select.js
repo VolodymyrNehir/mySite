@@ -39,7 +39,6 @@ $('.button').click(function () {
         type: 'POST',
         cache: false,
         data: {'form': {'userId': userId, 'select': select}},
-        dataType: 'html',
         success: function () {
             userId.forEach(item=>{
                 $(`#${item}`).attr('status', `${select}`);
