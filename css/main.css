@@ -6,7 +6,6 @@ body {
 table, td, th {
     border: 1px solid silver;
     border-collapse: collapse;
-    text-align: start;
 }
 
 table {
@@ -22,13 +21,11 @@ td, th {
 
 .wrapper {
     padding: 2em;
-    text-align: start;
 }
 
 .conteiner {
     border: 1px solid silver;
     padding: 2%;
-    box-sizing: border-box;
 }
 
 [status="true"] .colo {
