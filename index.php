@@ -11,8 +11,12 @@
     <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
-<div class="wrapper">
 
+<?php require 'modelWindows/modelWindow.php' ?>
+<?php require 'modelWindows/modelWindowDelete.php' ?>
+<?php require 'modelWindows/modelWindowConfirm.php' ?>
+
+<div class="wrapper"
     <div class="conteiner">
         <strong>Users</strong>
         <?php require 'View/select.php' ?>
@@ -34,13 +38,8 @@
             </tbody>
         </table>
         <?php require 'View/select.php' ?>
-
-
-
-        <?php require 'modelWindows/modelWindow.php' ?>
-        <?php require 'modelWindows/modelWindowDelete.php' ?>
-        <?php require 'modelWindows/modelWindowConfirm.php' ?>
-
+    </div>
+</div>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
                 integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
@@ -52,9 +51,6 @@
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 
-
-    </div>
-</div>
 
 
 <script src="JavaScript/addendUpUsers.js"></script>

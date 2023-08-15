@@ -7,7 +7,6 @@ $(function () {
         const status = $('.flexSwitchCheckChecked input').is(':checked');
         const role = $('#roleAdd').val();
         const select = $(this).closest('#addEditForm').find('#roleAdd').val();
-        console.log(select)
         if (select === '') {
             $('#exampleModalConfirm .modal-body span').text('Please select a role');
             $("#exampleModalConfirm").modal('show');
@@ -21,8 +20,6 @@ $(function () {
             dataType: 'html',
             success: function (data) {
                 const jsonData = JSON.parse(data);
-                console.log(jsonData)
-                console.log(userId)
                 if (jsonData.status == 'false') {
                     $('.errorWindow').text(jsonData.error.message).css('color', 'red');
                 } else if (userId !== '"null"') {
