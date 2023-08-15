@@ -1,11 +1,14 @@
 
-$("#checkAll").change(function () {
+$("#checkAll").on('change',function () {
     const isCheckAllChecked = $(this).is(':checked');
     $(".check").prop("checked", isCheckAllChecked);
 
 });
-
-$(".check").change(function () {
+$(document).on('click','.check',function (){
     const isAtLeastOneChecked = $(".check:checked").length >= $('.check').length;
     $("#checkAll").prop("checked", isAtLeastOneChecked);
-});
+})
+
+
+
+

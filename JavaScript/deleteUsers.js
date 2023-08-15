@@ -1,12 +1,13 @@
-$('.btn2').on('click', function () {
+
+$(document).on('click','.btn2', function (){
     const userId = $(this).closest('tr').attr('id');
+    console.log(userId);
     $("#exampleModalDelete").modal('show');
     $('#inputHiddenDelete').val(`["${userId}"]`)
     const lastName = $(`#${userId} .lastName`).text();
-   const firstName = $(`#${userId} .firstName`).text();
-   const op = $('#inputHiddenDelete').val();
-   console.log(op);
-$('#deleteUser').text(`Are you sure want to delete ${lastName} ${firstName}`)
+    const firstName = $(`#${userId} .firstName`).text();
+    const op = $('#inputHiddenDelete').val();
+    $('#deleteUser').text(`Are you sure want to delete ${lastName} ${firstName}`)
 })
 $('.btnDelete').on('click', function () {
     $("#exampleModalDelete").modal('hide')
@@ -21,6 +22,7 @@ $('.btnDelete').on('click', function () {
             userId.forEach(item => {
                 $(`#${item}`).remove();
             })
+
         }
     })
 })

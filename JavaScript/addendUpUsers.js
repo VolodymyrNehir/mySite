@@ -1,3 +1,4 @@
+
 $(function () {
     $('.buttonAdd').on('click', function () {
         const userId = $('#inputHiddenEdit').val();
@@ -8,11 +9,10 @@ $(function () {
         const select = $(this).closest('#addEditForm').find('#roleAdd').val();
         console.log(select)
         if (select === '') {
-            $('#exampleModalConfirm .modal-body span').text('no select');
+            $('#exampleModalConfirm .modal-body span').text('Please select a role');
             $("#exampleModalConfirm").modal('show');
             return;
         }
-
         $.ajax({
             url: './Controller/addUser.php',
             type: 'POST',
@@ -33,7 +33,7 @@ $(function () {
                     $(`#${userId} .role`).text(`${jsonData.user.role}`);
                     $("#exampleModal").modal('hide');
                 } else {
-                    $('table').append(`
+                    $('tbody').append(`
     <tr id="${jsonData.user.id}" status="${jsonData.user.status}">
         <th><input type="checkbox" class="check"></th>
         <td>
@@ -57,20 +57,6 @@ $(function () {
         </td>
     </tr>`
                     )
-                    $('.btn2').on('click', function () {
-                        const userId = $(this).closest('tr').attr('id');
-                        $("#exampleModalDelete").modal('show');
-                        $('#inputHiddenDelete').val(`["${userId}"]`)
-                    })
-
-
-                    $('.btnEdit').on('click', function () {
-                        const userId = $(this).closest('tr').attr('id');
-                        $('#inputHiddenEdit').val(`${userId}`)
-                        $("#exampleModal").modal('show');
-
-                    })
-
                     $("#exampleModal").modal('hide');
                 }
 
@@ -79,9 +65,8 @@ $(function () {
         })
 
     })
-
-
-    $('.btnEdit').on('click', function () {
+})
+    $(document).on('click','.btnEdit',function (){
         $('#exampleModalLabel').text('Edit user');
         const userId = $(this).closest('tr').attr('id');
         const status = $(`#${userId} `).attr('status');
@@ -101,6 +86,5 @@ $(function () {
             $(this).val($(`#${userId} .status`).text())
         })
         $("#exampleModal").modal('show');
-
     })
-})
+

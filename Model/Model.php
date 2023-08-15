@@ -55,7 +55,7 @@ class Model
     public function upUsers($id, $lastName, $firstName, $role, $status)
     {
         try {
-            $sql = "UPDATE `administrstor` SET `lastName` = ?, `firestName	` = ?, `role` = ?, `status` = ? WHERE `administrstor`.`id` = $id";
+            $sql = "UPDATE `administrstor` SET `lastName` = ?, `firestName` = ?, `role` = ?, `status` = ? WHERE `administrstor`.`id` = $id";
             $prepare = $this->pdo->prepare($sql);
             $prepare->execute([$lastName, $firstName, $role, $status]);
         } catch (PDOException $e) {
