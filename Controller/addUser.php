@@ -51,7 +51,7 @@ if ($userId !== '"null"') {
     $stan = ["status" => $errorStatus, "error" => ["code" => $code, "message" => $error], "user" => $upGetUser[0]];
     echo json_encode($stan);
 } else {
-    $newIdUser = $pdo->addUser($lastName, $lastName, $role, $status);
+    $newIdUser = $pdo->addUser($lastName, $firstName, $role, $status);
     $upGetUser = $pdo->getById($newIdUser);
     $stan = ["status" => $errorStatus, "error" => ["code" => $code, "message" => $error], "user" => $upGetUser[0]];
     echo json_encode($stan);
