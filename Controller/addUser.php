@@ -8,35 +8,33 @@ $status = $_POST['status'];
 $role = $_POST['role'];
 
 
-
-
 $errorStatus = 'true';
-$error = '';
 $code = '100';
-
+$error = ["lastName"=>'',"firstName"=>'',"role"=>''];
 $pdo = new Model();
 $getUser = $pdo->getById($userId);
 
 if (empty(strlen($userId))) {
     $errorStatus = 'false';
 }
-else
-    if (empty(strlen($lastName))) {
-        $errorStatus = 'false';
-        $error = 'field last Name is not filled';
-    } else
-        if (empty(strlen($firstName))) {
-            $errorStatus = 'false';
-            $error = 'field first Name is not filled';
-        } else
 
-            if (empty(strlen($role))) {
-                $errorStatus = 'false';
-                $error = 'field role is not filled';
-            }
+if (empty(strlen($lastName))) {
+    $errorStatus = 'false';
+    $error["lastName"] = " field last Name is not filled";
+}
+
+if (empty(strlen($firstName))) {
+    $errorStatus = 'false';
+    $error["firstName"] = " field first Name is not filled";
+}
+
+if (empty(strlen($role))) {
+    $errorStatus = 'false';
+    $error["role"] = " field role is not filled";
+}
 if ($userId !== '"null"' && empty($getUser)) {
     $errorStatus = 'false';
-    $error = 'no found user';
+        $error['noFound'] = "no found user";
 }
 
 if ($errorStatus == 'false') {

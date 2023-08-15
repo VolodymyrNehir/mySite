@@ -6,7 +6,7 @@
 <select class="select form-select" >
     <option value="">-Please Select-</option>
     <option value="true">Set active</option>
-    <option value="false">Set no active</option>
+    <option value="false">No active</option>
     <option value="delete">Delete</option>
 </select>
 <button class="btn btn-primary col-auto button" type="button" >Ok</button>

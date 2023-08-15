@@ -9,25 +9,27 @@
             </div>
 
             <div class="modal-body">
-                <h3 class="errorWindow"></h3>
+                <h3 class="errorWindow errorForm"></h3>
                 <form id="addEditForm">
                     <input type="hidden" id="inputHiddenEdit" name="id">
                     <div class="form-group">
-                        <label for="recipient-name" class="col-form-label">First name:</label>
+                        <label for="recipient-name" class="col-form-label">First name</label><span class="firstNameError errorForm"></span>
                         <input type="text" class="form-control" id="firstName" name="firstName">
                     </div>
+
                     <div class="form-group">
-                        <label for="recipient-name" class="col-form-label">Last name</label>
+                        <label for="recipient-name" class="col-form-label">Last name</label><span class="lastNameError errorForm"></span>
                         <input type="text" class="form-control" id="lastName" name="lastName">
                     </div>
+                    <span>Status</span>
                     <div class="flexSwitchCheckChecked">
-                        <span>Status</span>
                         <div class="form-check form-switch ">
                             <label class="form-check-label" for="flexSwitchCheckChecked"></label>
                             <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" name="status">
                         </div>
                     </div>
-                    <label>Role</label>
+
+                    <label>Role </label><span class="roleError errorForm"></span>
                     <select class="custom-select  my-1 form-select" id="roleAdd">
                         <option value="">-Please Select-</option>
                         <option value="Admin">Admin</option>
