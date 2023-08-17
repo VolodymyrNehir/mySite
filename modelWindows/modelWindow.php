@@ -21,8 +21,9 @@
                         <label for="recipient-name" class="col-form-label">Last name</label><span class="lastNameError errorForm"></span>
                         <input type="text" class="form-control" id="lastName" name="lastName">
                     </div>
-                    <span>Status</span>
+
                     <div class="flexSwitchCheckChecked">
+                        <span>Status</span>
                         <div class="form-check form-switch ">
                             <label class="form-check-label" for="flexSwitchCheckChecked"></label>
                             <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" name="status">

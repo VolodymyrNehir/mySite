@@ -1,5 +1,5 @@
 $(function () {
-    $('.button').click(function () {
+    $('.button').on('click',function () {
         const select = $(this).closest('.formSelect').find('.select').val();
         const userId = $(".check:checked").closest('tr').map(function () {
             return $(this).attr('id');

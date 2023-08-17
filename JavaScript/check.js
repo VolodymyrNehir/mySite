@@ -1,13 +1,16 @@
 $(function () {
-    $("#checkAll").on('change', function () {
+    $(document).on('change', '#checkAll', function () {
         const isCheckAllChecked = $(this).is(':checked');
         $(".check").prop("checked", isCheckAllChecked);
-
-    });
-    $(document).on('click', '.check', function () {
-        const isAtLeastOneChecked = $(".check:checked").length >= $('.check').length;
-        $("#checkAll").prop("checked", isAtLeastOneChecked);
     })
+
+
+    $(document).on('change', '.check', function () {
+        const isAtLeastOneChecked = $(".check:checked").length == $('.check').length;
+        $("#checkAll").prop("checked", isAtLeastOneChecked);
+
+    })
+
 
 })
 

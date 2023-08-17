@@ -1,9 +1,15 @@
 <?php
 include_once 'Model/Model.php';
+$get = $_POST['get'];
 $pdo = new Model();
 $users = $pdo->selectUsers();
+
 ?>
- <?php foreach ($users as $user)
+
+
+
+
+<?php foreach ($users as $user)
  {
      ?>
 

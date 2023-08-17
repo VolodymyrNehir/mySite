@@ -25,9 +25,11 @@ $(function () {
                     $(`#${userId} .role`).text(`${jsonData.user.role}`);
                     $("#exampleModal").modal('hide');
                 } else {
+                    let checked
+                    if ($(checkAll).prop('checked')) {checked = 'checked'}
                     $('tbody').append(`
     <tr id="${jsonData.user.id}" status="${jsonData.user.status}">
-        <th><input type="checkbox" class="check"></th>
+        <th><input type="checkbox" class="check" ${checked}></th>
         <td>
             <span scope="col" class="firstName">${jsonData.user.firstName}</span>
             <span class="lastName">${jsonData.user.lastName}</span>
