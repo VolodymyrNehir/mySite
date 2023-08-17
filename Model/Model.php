@@ -3,7 +3,6 @@
 class Model
 {
     private $pdo;
-
     public function __construct()
     {
         $host = 'localhost:8889';
@@ -37,7 +36,7 @@ class Model
     {
         $sql = "DELETE FROM `users` WHERE `users`.`id` = $id";
         $prepare = $this->pdo->prepare($sql);
-        $prepare->execute();
+        return $prepare->execute();
     }
 
     public function upUsers($id, $lastName, $firstName, $role, $status)
@@ -45,7 +44,7 @@ class Model
         $sql = "UPDATE `users` SET `lastName` = ?, `firstName` = ?, `role` = ?, `status` = ? WHERE `users`.`id` = $id";
         $prepare = $this->pdo->prepare($sql);
         $prepare->execute([$lastName, $firstName, $role, $status]);
-
+        return $this->pdo->lastInsertId();
     }
 
     public function setAction($id, $status)
@@ -54,6 +53,7 @@ class Model
         $sql = "UPDATE `users` SET `status` = ? WHERE `users`.`id`=$id";
         $prepare = $this->pdo->prepare($sql);
         $prepare->execute([$status]);
+        return $this->pdo->lastInsertId();
     }
 
     public function selectUsers()

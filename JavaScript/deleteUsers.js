@@ -16,7 +16,9 @@ $(function () {
             type: 'POST',
             cache: false,
             data: {"userId": userId},
-            success() {
+            success(data) {
+
+                console.log(JSON.parse(data))
                 userId.forEach(item => {
                     $(`#${item}`).remove();
                 })

@@ -41,9 +41,9 @@ $(function () {
             type: 'POST',
             cache: false,
             data: {'form': {'userId': userId, 'select': select}},
-            success: function () {
-                userId.forEach(item => {
-                    $(`#${item}`).attr('status', `${select}`);
+            success: function (data) {
+               JSON.parse(data).forEach(item => {
+                    $(`#${item.id}`).attr('status', `${item.status}`);
                 })
                 $('input[type="checkbox"]').prop('checked', false);
             }

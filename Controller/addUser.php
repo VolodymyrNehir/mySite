@@ -1,5 +1,6 @@
 <?php
 include_once '../Model/Model.php';
+include_once '../codeStatus/CodeStatus.php';
 
 $userId = $_POST['userId'];
 $lastName = trim(filter_var($_POST['lastName'], FILTER_SANITIZE_STRING));
@@ -7,10 +8,8 @@ $firstName = trim(filter_var($_POST['firstName'], FILTER_SANITIZE_STRING));
 $status = $_POST['status'];
 $role = $_POST['role'];
 
-
 $errorStatus = 'true';
 $code = '100';
-$error = ["lastName"=>'',"firstName"=>'',"role"=>''];
 $pdo = new Model();
 $getUser = $pdo->getById($userId);
 
@@ -34,25 +33,20 @@ if (empty(strlen($role))) {
 }
 if ($userId !== '"null"' && empty($getUser)) {
     $errorStatus = 'false';
-        $error['noFound'] = "no found user";
+    $error['noFound'] = "no found user";
 }
 
 if ($errorStatus == 'false') {
-    $stan = ["status" => $errorStatus, "error" => ["code" => $code, "message" => $error]];
-    echo json_encode($stan);
+    echo CodeStatus::myCodeStatus($errorStatus,$code,$error);
     exit();
 }
 
 if ($userId !== '"null"') {
     $pdo->upUsers($userId, $lastName, $firstName, $role, $status);
-    $upGetUser = $pdo->getById($userId);
-    $stan = ["status" => $errorStatus, "error" => ["code" => $code, "message" => $error], "user" => $upGetUser[0]];
-    echo json_encode($stan);
+    echo CodeStatus::myCodeStatus($errorStatus,$code,'',$userId);
 } else {
     $newIdUser = $pdo->addUser($lastName, $firstName, $role, $status);
-    $upGetUser = $pdo->getById($newIdUser);
-    $stan = ["status" => $errorStatus, "error" => ["code" => $code, "message" => $error], "user" => $upGetUser[0]];
-    echo json_encode($stan);
+    echo CodeStatus::myCodeStatus($errorStatus,$code,'',$newIdUser);
 }
 
 
