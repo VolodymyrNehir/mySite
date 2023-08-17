@@ -35,6 +35,7 @@ $(function () {
 
             return;
         }
+        $('.select option[value=""]').prop('selected',true)
         $.ajax({
             url: './Controller/updateUsers.php',
             type: 'POST',
@@ -45,7 +46,6 @@ $(function () {
                     $(`#${item}`).attr('status', `${select}`);
                 })
                 $('input[type="checkbox"]').prop('checked', false);
-
             }
         })
     });

@@ -57,55 +57,5 @@
 <script src="JavaScript/deleteUsers.js"></script>
 <script src="JavaScript/reset.js"></script>
 <script src="JavaScript/select.js"></script>
-<button class="btn">gggg</button>
-<!--<script>-->
-<!---->
-<!--    $(document).on('click','.btn',function () {-->
-<!--        console.log('ok');-->
-<!--        $.ajax({-->
-<!--            url: 'View/selectUsers.php',-->
-<!--            type: 'POST',-->
-<!--            data: {'get': 'ok'},-->
-<!--            success(go) {-->
-<!--console.log(go)-->
-<!--            }-->
-<!--        })-->
-<!--    })-->
-<!---->
-<!--    $.ajax({-->
-<!--        url:'View/selectUsers.php',-->
-<!--        type:'GET',-->
-<!--        success(users){-->
-<!--            console.log(users)-->
-<!--            // users.forEach(-->
-<!--            //     user =>-->
-<!---->
-<!--    //         $('tbody').append(`-->
-<!--    // <tr id="${user['id']}" status="${user['status']}">-->
-<!--    //     <th><input type="checkbox" class="check" ${checked}></th>-->
-<!--    //     <td>-->
-<!--    //         <span scope="col" class="firstName">${jsonData.user.firstName}</span>-->
-<!--    //         <span class="lastName">${jsonData.user.lastName}</span>-->
-<!--    //     </td>-->
-<!--    //     <td class="role">${jsonData.user.role}</td>-->
-<!--    //     <td>-->
-<!--    //         <div class="status">-->
-<!--    //             <div class="colo">-->
-<!--    //             </div>-->
-<!--    //         </div>-->
-<!--    //     </td>-->
-<!--    //     <td>-->
-<!--    //         <div class="status">-->
-<!--    //             <div class="butt ">-->
-<!--    //                 <button class="btn1 btnEdit "><img src="icons/edit.svg" alt="edit"></button>-->
-<!--    //                 <button class="btn2"><img src="icons/svgviewer-output%20(3).svg" alt="trash"></button>-->
-<!--    //             </div>-->
-<!--    //         </div>-->
-<!--    //     </td>-->
-<!--    // </tr>`-->
-<!--    //         )-->
-<!--        }-->
-<!--    })-->
-<!--</script>-->
 </body>
 </html>
