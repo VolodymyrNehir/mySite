@@ -3,6 +3,7 @@
 class Model
 {
     private $pdo;
+
     public function __construct()
     {
         $host = 'localhost:8889';
@@ -12,7 +13,7 @@ class Model
         try {
             $dsn = "mysql:host=$host;dbname=$db";
             $this->pdo = new PDO($dsn, $user, $password);
-        }catch (PDOException $e) {
+        } catch (PDOException $e) {
             echo "error: " . $e->getMessage();
         }
 
@@ -21,7 +22,11 @@ class Model
     public function getById($id)
     {
         $query = $this->pdo->query("SELECT * FROM `users` WHERE `users`.`id` = $id");
-        return $query->fetchAll(PDO::FETCH_ASSOC);
+        $arr = $query->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($arr as $user ){
+            return $user;
+        }
+
     }
 
     public function addUser($lastName, $firstName, $role, $status)
@@ -36,7 +41,8 @@ class Model
     {
         $sql = "DELETE FROM `users` WHERE `users`.`id` = $id";
         $prepare = $this->pdo->prepare($sql);
-        return $prepare->execute();
+        $prepare->execute();
+        return $prepare->rowCount();
     }
 
     public function upUsers($id, $lastName, $firstName, $role, $status)
@@ -53,7 +59,7 @@ class Model
         $sql = "UPDATE `users` SET `status` = ? WHERE `users`.`id`=$id";
         $prepare = $this->pdo->prepare($sql);
         $prepare->execute([$status]);
-        return $this->pdo->lastInsertId();
+        return $prepare->rowCount();
     }
 
     public function selectUsers()

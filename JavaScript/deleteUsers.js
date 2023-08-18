@@ -17,11 +17,18 @@ $(function () {
             cache: false,
             data: {"userId": userId},
             success(data) {
-
-                console.log(JSON.parse(data))
-                userId.forEach(item => {
-                    $(`#${item}`).remove();
+               const statusCod = JSON.parse(data)
+                    userId.forEach(item => {
+                        statusCod.forEach(values=>{
+                    if (values.status == 'false'){
+                        $('#exampleModalConfirm .modal-body span').text($(`#${item} .lastName`).text() +' '+ $(`#${item} .lastName`).text() +' '+ values.error.message);
+                        $("#exampleModalConfirm").modal('show');
+                    }
+                            $(`#${item}`).remove();
+                    })
                 })
+
+
 
             }
         })

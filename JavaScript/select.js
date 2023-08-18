@@ -35,15 +35,21 @@ $(function () {
 
             return;
         }
-        $('.select option[value=""]').prop('selected',true)
         $.ajax({
             url: './Controller/updateUsers.php',
             type: 'POST',
             cache: false,
             data: {'form': {'userId': userId, 'select': select}},
             success: function (data) {
+                $('.select option[value=""]').prop('selected',true)
                JSON.parse(data).forEach(item => {
-                    $(`#${item.id}`).attr('status', `${item.status}`);
+                   if (item.status == 'true'){
+                       $(`#${item.user.id}`).attr('status', `${item.user.status}`);
+                   } if (item.user === null){
+                       $('#exampleModalConfirm .modal-body span').text(item.error.message);
+                       $("#exampleModalConfirm").modal('show');
+                   }
+
                 })
                 $('input[type="checkbox"]').prop('checked', false);
             }
