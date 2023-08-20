@@ -5,10 +5,6 @@ $pdo = new Model();
 $users = $pdo->selectUsers();
 
 ?>
-
-
-
-
 <?php foreach ($users as $user)
  {
      ?>

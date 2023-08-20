@@ -5,7 +5,6 @@ $(function () {
         const firstName = $('#firstName').val();
         const status = $('.flexSwitchCheckChecked input').is(':checked');
         const role = $('#roleAdd').val();
-        const select = $(this).closest('#addEditForm').find('#roleAdd').val();
         $('.firstNameError').text('')
         $('.lastNameError').text('')
         $('.roleError').text('');
@@ -14,37 +13,31 @@ $(function () {
             type: 'POST',
             cache: false,
             data: {'userId': userId, 'lastName': lastName, 'firstName': firstName, 'status': status, 'role': role},
-            success: function (data) {
-                console.log(data)
-                const jsonData = JSON.parse(data);
-                console.log(jsonData)
-                if (jsonData.status == 'false') {
-                $('.firstNameError').text(jsonData.error.message.firstName).css('color', 'red');
-                $('.lastNameError').text(jsonData.error.message.lastName).css('color', 'red');
-                $('.roleError').text(jsonData.error.message.role).css('color', 'red');
-                $('.errorWindow').text(jsonData.error.message.noFound).css('color', 'red');
-            } else if(userId !== '"null"')
-        {
-            $(`#${userId} .lastName`).text(`${jsonData.user.lastName}`);
-            $(`#${userId} .firstName`).text(`${jsonData.user.firstName}`);
-            $(`#${userId}`).attr('status', `${jsonData.user.status}`);
-            $(`#${userId} .role`).text(`${jsonData.user.role}`);
-            $("#exampleModal").modal('hide');
-        }
-    else
-        {
-            let checked
-            if ($(checkAll).prop('checked')) {
-                checked = 'checked'
-            }
-            $('tbody').append(`
-    <tr id="${jsonData.user.id}" status="${jsonData.user.status}">
+            success: function (response) {
+                const data = JSON.parse(response);
+                if (data.status == 'false' && data.error) {
+                    for (const value of data.error) {
+                        $(`.${value.field}Error`).text(value.message).css('color', 'red');
+                    }
+                } else if (userId !== '"null"') {
+                    $(`#${data.user.id} .lastName`).text(`${data.user.lastName}`);
+                    $(`#${data.user.id} .firstName`).text(`${data.user.firstName}`);
+                    $(`#${data.user.id}`).attr('status', `${data.user.status}`);
+                    $(`#${data.user.id} .role`).text(`${data.user.role}`);
+                    $("#exampleModal").modal('hide');
+                } else {
+                    let checked = ':checked';
+                    if ($(checkAll).prop('checked')) {
+                        checked = 'checked'
+                    }
+                    $('tbody').append(`
+    <tr id="${data.user.id}" status="${data.user.status}">
         <th><input type="checkbox" class="check" ${checked}></th>
         <td>
-            <span scope="col" class="firstName">${jsonData.user.firstName}</span>
-            <span class="lastName">${jsonData.user.lastName}</span>
+            <span scope="col" class="firstName">${data.user.firstName}</span>
+            <span class="lastName">${data.user.lastName}</span>
         </td>
-        <td class="role">${jsonData.user.role}</td>
+        <td class="role">${data.user.role}</td>
         <td>
             <div class="status">
                 <div class="colo">
@@ -60,30 +53,31 @@ $(function () {
             </div>
         </td>
     </tr>`
-            )
-            $("#exampleModal").modal('hide');
-        }
+                    )
+                    $("#exampleModal").modal('hide');
+                }
 
-    }
+            }
+
+        })
 
     })
 
-})
 
-$(document).on('click', '.btnEdit', function () {
-    $('.errorForm').text('');
-    $('#exampleModalLabel').text('Edit user');
-    $('.buttonAdd').text('Save user');
-    const userId = $(this).closest('tr').attr('id');
-    const status = $(`#${userId} `).attr('status');
-    $('#inputHiddenEdit').val(`${userId}`)
-    $('.flexSwitchCheckChecked input').prop('checked', `${status}` === 'true')
+    $(document).on('click', '.btnEdit', function () {
+        $('.errorForm').text('');
+        $('#exampleModalLabel').text('Edit user');
+        $('.buttonAdd').text('Save user');
+        const userId = $(this).closest('tr').attr('id');
+        const status = $(`#${userId} `).attr('status');
+        $('#inputHiddenEdit').val(`${userId}`)
+        $('.flexSwitchCheckChecked input').prop('checked', `${status}` === 'true')
 
-    $('#lastName').val($(`#${userId} .lastName`).text())
-    $('#firstName').val($(`#${userId} .firstName`).text())
-    $('#roleAdd').val($(`#${userId} .role`).text())
-    $('#statusAdd').val($(`#${userId} .status`).text())
-    $("#exampleModal").modal('show');
-})
+        $('#lastName').val($(`#${userId} .lastName`).text())
+        $('#firstName').val($(`#${userId} .firstName`).text())
+        $('#roleAdd').val($(`#${userId} .role`).text())
+        $('#statusAdd').val($(`#${userId} .status`).text())
+        $("#exampleModal").modal('show');
+    })
 
 })

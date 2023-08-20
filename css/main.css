@@ -1,6 +1,7 @@
 body {
     margin: 0;
     padding: 0;
+    font-family:sans-serif;
 }
 
 table, td, th {
@@ -71,8 +72,7 @@ td, th {
 .select {
     text-align: center;
     display: inline-flex;
-    width: 20%;
-    min-width: 200px;
+    max-width: 200px;
 }
 
 .btn {

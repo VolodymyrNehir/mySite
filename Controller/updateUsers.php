@@ -1,31 +1,25 @@
 <?php
 include_once "../Model/Model.php";
-//include_once "../codeStatus/CodeStatus.php";
 
 $form = $_POST['form'];
 
-
 $pdo = new Model();
-
 foreach ($form['userId'] as $userId) {
+    $pdo->setAction($userId, $form['select']);
     $user = $pdo->getById($userId);
-    $errorStatus = $pdo->setAction($userId, $form['select']);
-    if ($errorStatus == false) {
-        $response[] = ["status" => $errorStatus, "error" => ["code" => '100', "user" => $user], "user" =>
+    if (!empty($user)) {
+        $response[] = ["status" => true, "error" => 'null', "user" =>
             [
-                "id" => $user,
+                "id" => $userId,
                 "firstName" => $user['firstName'],
                 "lastName" => $user['lastName'],
                 "role" => $user['role'],
                 "status" => $user['status'],
             ]
         ];
+    } else {
+        $response[] = ["status" => false, "error" => ["code" => "100", "message" => " No found user"]]
+        ;
     }
-    else {
-        $response[] = ["status" => $errorStatus, "error" => ["code" => '100', "message" => 'failed to provide status']];
-
-    }
-//    $res = $pdo->setAction($user, $form['select']);
-//    $arrStatus[] = CodeStatus::myStatusCodeUsers($user, $res, '100', 'failed to provide status');
 }
 echo json_encode($response);

@@ -5,7 +5,6 @@ $(function () {
         $('#inputHiddenDelete').val(`["${userId}"]`)
         const lastName = $(`#${userId} .lastName`).text();
         const firstName = $(`#${userId} .firstName`).text();
-        const op = $('#inputHiddenDelete').val();
         $('#deleteUser').text(`Are you sure want to delete ${lastName} ${firstName}`)
     })
     $('.btnDelete').on('click', function () {
@@ -17,19 +16,16 @@ $(function () {
             cache: false,
             data: {"userId": userId},
             success(data) {
-               const statusCod = JSON.parse(data)
-                    userId.forEach(item => {
-                        statusCod.forEach(values=>{
-                    if (values.status == 'false'){
-                        $('#exampleModalConfirm .modal-body span').text($(`#${item} .lastName`).text() +' '+ $(`#${item} .lastName`).text() +' '+ values.error.message);
-                        $("#exampleModalConfirm").modal('show');
-                    }
-                            $(`#${item}`).remove();
+                const statusCod = JSON.parse(data)
+                userId.forEach(item => {
+                    statusCod.forEach(values=>{
+                        if (values.status == 'false'){
+                            $('#exampleModalConfirm .modal-body span').text($(`#${item} .lastName`).text() +' '+ $(`#${item} .lastName`).text() +' '+ values.error.message);
+                            $("#exampleModalConfirm").modal('show');
+                        }
+                        $(`#${item}`).remove();
                     })
                 })
-
-
-
             }
         })
     })

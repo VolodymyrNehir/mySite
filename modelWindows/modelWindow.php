@@ -1,4 +1,3 @@
-<!-- Modal -->
 
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -9,7 +8,7 @@
             </div>
 
             <div class="modal-body">
-                <h3 class="errorWindow errorForm"></h3>
+                <h3 class="noFindError errorForm"></h3>
                 <form id="addEditForm">
                     <input type="hidden" id="inputHiddenEdit" name="id">
                     <div class="form-group">
@@ -48,12 +47,6 @@
         </div>
     </div>
 </div>
-
-
-<!-- Button trigger modal -->
-<!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">-->
-<!--    Launch demo modal-->
-<!--</button>-->
 
 
 

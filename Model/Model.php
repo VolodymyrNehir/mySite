@@ -34,8 +34,7 @@ class Model
         $sql = "INSERT INTO `users` (`id`, `lastName`, `firstName`, `role`, `status`) VALUES (NULL, ?, ?, ?, ?)";
         $prepare = $this->pdo->prepare($sql);
         $prepare->execute([$lastName, $firstName, $role, $status]);
-        return $this->pdo->lastInsertId();
-    }
+        return $this->pdo->lastInsertId();    }
 
     public function deleteUsers($id)
     {
@@ -50,7 +49,6 @@ class Model
         $sql = "UPDATE `users` SET `lastName` = ?, `firstName` = ?, `role` = ?, `status` = ? WHERE `users`.`id` = $id";
         $prepare = $this->pdo->prepare($sql);
         $prepare->execute([$lastName, $firstName, $role, $status]);
-        return $this->pdo->lastInsertId();
     }
 
     public function setAction($id, $status)
@@ -59,16 +57,12 @@ class Model
         $sql = "UPDATE `users` SET `status` = ? WHERE `users`.`id`=$id";
         $prepare = $this->pdo->prepare($sql);
         $prepare->execute([$status]);
-        return $prepare->rowCount();
     }
 
     public function selectUsers()
     {
         $query = $this->pdo->query('SELECT * FROM `users`');
         return $query->fetchAll(PDO::FETCH_ASSOC);
-
     }
-
 }
-
 ?>

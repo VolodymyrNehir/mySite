@@ -9,20 +9,16 @@ $(function () {
         if (select === '' && check === false) {
             $('#exampleModalConfirm .modal-body span').text('Please select a user and an action');
             $("#exampleModalConfirm").modal('show');
-
-            return;
         }
-        if (select === '') {
+        else if (select === '') {
             $('#exampleModalConfirm .modal-body span').text('Please select an action');
             $("#exampleModalConfirm").modal('show');
-            return;
         }
-        if (check === false) {
+        else if (check === false) {
             $('#exampleModalConfirm .modal-body span').text('Please select a user');
             $("#exampleModalConfirm").modal('show');
-            return;
         }
-        if (select == 'delete') {
+        else if (select == 'delete') {
             $("#exampleModalDelete").modal('show');
             $('#inputHiddenDelete').val(`${JSON.stringify(userId)}`);
             if (userId.length > 1) {
@@ -32,8 +28,6 @@ $(function () {
                 const lastName = $(`#${userId} .lastName`).text();
                 $('#deleteUser').text(`Are you sure want to delete ${firstName} ${lastName}`)
             }
-
-            return;
         }
         $.ajax({
             url: './Controller/updateUsers.php',
@@ -42,14 +36,11 @@ $(function () {
             data: {'form': {'userId': userId, 'select': select}},
             success: function (data) {
                 $('.select option[value=""]').prop('selected',true)
-               JSON.parse(data).forEach(item => {
-                   if (item.status == 'true'){
-                       $(`#${item.user.id}`).attr('status', `${item.user.status}`);
-                   } if (item.user === null){
-                       $('#exampleModalConfirm .modal-body span').text(item.error.message);
-                       $("#exampleModalConfirm").modal('show');
-                   }
-
+                JSON.parse(data).forEach(item => {
+                    if (item.status === true){
+                        $(`#${item.user.id}`).attr('status', `${item.user.status}`);
+                    }
+                    console.log(JSON.parse(data).length)
                 })
                 $('input[type="checkbox"]').prop('checked', false);
             }
