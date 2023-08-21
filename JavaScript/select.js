@@ -27,6 +27,7 @@ $(function () {
                 const firstName = $(`#${userId} .firstName`).text();
                 const lastName = $(`#${userId} .lastName`).text();
                 $('#deleteUser').text(`Are you sure want to delete ${firstName} ${lastName}`)
+                return
             }
         }
         $.ajax({
@@ -34,14 +35,22 @@ $(function () {
             type: 'POST',
             cache: false,
             data: {'form': {'userId': userId, 'select': select}},
-            success: function (data) {
+            success: function (datas) {
+
                 $('.select option[value=""]').prop('selected',true)
-                JSON.parse(data).forEach(item => {
-                    if (item.status === true){
-                        $(`#${item.user.id}`).attr('status', `${item.user.status}`);
+               const data = JSON.parse(datas)
+                console.log(data)
+                    if (data.user !== null){
+                        data.user.forEach(item=>{
+                            $(`#${item.id}`).attr('status', `${item.status}`);
+                        })
                     }
-                    console.log(JSON.parse(data).length)
-                })
+                if (data.error !== null){
+                    $('#exampleModalConfirm .modal-body span').text(data.error.message);
+                    $("#exampleModalConfirm").modal('show');
+                }
+
+
                 $('input[type="checkbox"]').prop('checked', false);
             }
         })

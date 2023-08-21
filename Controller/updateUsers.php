@@ -8,18 +8,21 @@ foreach ($form['userId'] as $userId) {
     $pdo->setAction($userId, $form['select']);
     $user = $pdo->getById($userId);
     if (!empty($user)) {
-        $response[] = ["status" => true, "error" => 'null', "user" =>
+        $response[] =
             [
                 "id" => $userId,
                 "firstName" => $user['firstName'],
                 "lastName" => $user['lastName'],
                 "role" => $user['role'],
                 "status" => $user['status'],
-            ]
-        ];
+            ];
     } else {
-        $response[] = ["status" => false, "error" => ["code" => "100", "message" => " No found user"]]
-        ;
+        $error =  ["code" => "100", "message" => "Some of the selected users do not exist"];
     }
+
 }
-echo json_encode($response);
+
+    echo json_encode(["status" => true, "error" => $error, "user" => $response]);
+
+
+
