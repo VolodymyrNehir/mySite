@@ -40,8 +40,7 @@ class Model
     {
         $sql = "DELETE FROM `users` WHERE `users`.`id` = $id";
         $prepare = $this->pdo->prepare($sql);
-        $prepare->execute();
-        return $prepare->rowCount();
+        return $prepare->execute();
     }
 
     public function upUsers($id, $lastName, $firstName, $role, $status)

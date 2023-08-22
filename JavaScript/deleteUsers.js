@@ -16,16 +16,15 @@ $(function () {
             cache: false,
             data: {"userId": userId},
             success(data) {
+
                 const statusCod = JSON.parse(data)
                 userId.forEach(item => {
-                    statusCod.forEach(values=>{
-                        if (values.status == 'false'){
-                            $('#exampleModalConfirm .modal-body span').text($(`#${item} .lastName`).text() +' '+ $(`#${item} .lastName`).text() +' '+ values.error.message);
-                            $("#exampleModalConfirm").modal('show');
-                        }
+                    if (statusCod.status === true){
                         $(`#${item}`).remove();
-                    })
+                    }
                 })
+                const isAtLeastOneChecked = $(".check:checked").length == $('.check').length;
+                $("#checkAll").prop("checked", isAtLeastOneChecked);
             }
         })
     })

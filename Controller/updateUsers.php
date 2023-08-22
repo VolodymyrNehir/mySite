@@ -1,9 +1,10 @@
 <?php
 include_once "../Model/Model.php";
 
-$form = $_POST['form'];
+$form = $_POST['checkInfo'];
 
 $pdo = new Model();
+$error = null;
 foreach ($form['userId'] as $userId) {
     $pdo->setAction($userId, $form['select']);
     $user = $pdo->getById($userId);
@@ -11,18 +12,15 @@ foreach ($form['userId'] as $userId) {
         $response[] =
             [
                 "id" => $userId,
-                "firstName" => $user['firstName'],
-                "lastName" => $user['lastName'],
-                "role" => $user['role'],
                 "status" => $user['status'],
             ];
     } else {
-        $error =  ["code" => "100", "message" => "Some of the selected users do not exist"];
+        $errorId[] =  $userId;
     }
 
 }
-
-    echo json_encode(["status" => true, "error" => $error, "user" => $response]);
-
-
-
+if (!empty($response)){
+    echo json_encode(["status" => true, "error" =>["code" => "100", "message" => "Some of the selected users do not exist", "id"=>$errorId],"users"=> $response]);
+} else {
+    echo json_encode(["status" => false, "error" => ["code" => "100", "message" => "Some of the selected users do not exist", "id"=>$errorId]]);
+}

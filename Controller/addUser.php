@@ -52,15 +52,17 @@ if ($userId == '"null"') {
 } else {
     $pdo->upUsers($userId, $lastName, $firstName, $role, $status);
     $user = $pdo->getById($userId);
-    $response = ["status" => "true", "error" => "null", "user" =>
-        [
-            "id" => $userId,
-            "firstName" => $user['firstName'],
-            "lastName" => $user['lastName'],
-            "role" => $user['role'],
-            "status" => $user['status'],
-        ]
-    ];
+    if (!empty($user)){
+        $response = ["status" => "true", "error" => "null", "user" =>
+            [
+                "id" => $userId,
+                "firstName" => $user['firstName'],
+                "lastName" => $user['lastName'],
+                "role" => $user['role'],
+                "status" => $user['status'],
+            ]
+        ];
+    }
 }
 echo json_encode($response);
 

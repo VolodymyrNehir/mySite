@@ -27,27 +27,31 @@ $(function () {
                 const firstName = $(`#${userId} .firstName`).text();
                 const lastName = $(`#${userId} .lastName`).text();
                 $('#deleteUser').text(`Are you sure want to delete ${firstName} ${lastName}`)
-                return
+
             }
+            return
         }
         $.ajax({
             url: './Controller/updateUsers.php',
             type: 'POST',
             cache: false,
-            data: {'form': {'userId': userId, 'select': select}},
+            data: {'checkInfo': {'userId': userId, 'select': select}},
             success: function (datas) {
-
                 $('.select option[value=""]').prop('selected',true)
                const data = JSON.parse(datas)
                 console.log(data)
-                    if (data.user !== null){
-                        data.user.forEach(item=>{
+                    if (data.users){
+                        data.users.forEach(item=>{
                             $(`#${item.id}`).attr('status', `${item.status}`);
                         })
                     }
                 if (data.error !== null){
                     $('#exampleModalConfirm .modal-body span').text(data.error.message);
                     $("#exampleModalConfirm").modal('show');
+                    data.error.id.forEach(item=>{
+                        $(`#${item}`).remove()
+                    })
+
                 }
 
 
