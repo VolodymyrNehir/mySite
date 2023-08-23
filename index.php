@@ -52,7 +52,7 @@
 
 
 
-<script src="JavaScript/addendUpUsers.js"></script>
+<script src="JavaScript/addEndUpUsers.js"></script>
 <script src="JavaScript/check.js"></script>
 <script src="JavaScript/deleteUsers.js"></script>
 <script src="JavaScript/reset.js"></script>

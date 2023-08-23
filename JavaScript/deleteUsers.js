@@ -16,7 +16,6 @@ $(function () {
             cache: false,
             data: {"userId": userId},
             success(data) {
-
                 const statusCod = JSON.parse(data)
                 userId.forEach(item => {
                     if (statusCod.status === true){
