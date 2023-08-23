@@ -36,9 +36,9 @@ $(function () {
             type: 'POST',
             cache: false,
             data: {'checkInfo': {'userId': userId, 'select': select}},
-            success: function (datas) {
+            success: function (response) {
                 $('.select option[value=""]').prop('selected',true)
-               const data = JSON.parse(datas)
+               const data = JSON.parse(response)
                     if (data.users){
                         data.users.forEach(item=>{
                             $(`#${item.id}`).attr('status', `${item.status}`);
