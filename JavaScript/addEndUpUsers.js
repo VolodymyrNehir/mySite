@@ -25,7 +25,7 @@ $(function () {
                     $("#exampleModal").modal('hide');
                 } else {
                     let checked = ':checked';
-                    if ($('#checkAll').prop('checked')) {
+                    if ($('#checkAll').is('checked')) {
                         checked = 'checked'
                     }
                     $('tbody').append(`

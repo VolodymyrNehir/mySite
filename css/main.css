@@ -78,3 +78,15 @@ td, th {
 .btn {
     vertical-align: baseline;
 }
+.modal-footer{
+    border-top: 0;
+
+}
+.myModal-footer{
+    display: flex;
+    padding: 0.75rem;
+    justify-content: flex-end
+}
+.myModal-footer>*{
+    margin: 0.25rem
+}
