@@ -28,14 +28,14 @@ if (empty($user) && $userId !== '"null"') {
 }
 
 if (!empty($response)) {
-    exit(json_encode(["status" => "false", "error" => $response]));
+    exit(json_encode(["status" => false, "error" => $response]));
 }
 
 if ($userId == '"null"') {
     $newId = $pdo->addUser($lastName, $firstName, $role, $status);
     $userNew = $pdo->getById($newId);
     if (isset($userNew)) {
-        $response = ["status" => "true", "error" => "null", "user" =>
+        $response = ["status" => true, "error" => "null", "user" =>
             [
                 "id" => $newId,
                 "firstName" => $userNew['firstName'],
@@ -46,20 +46,20 @@ if ($userId == '"null"') {
         ];
     }
     else {
-        $response = ["status" => 'false', "error" => ["code" => "100", "message" => " failed to add user"]]
+        $response = ["status" => false, "error" => ["code" => "100", "message" => " failed to add user"]]
         ;
     }
 } else {
     $pdo->upUsers($userId, $lastName, $firstName, $role, $status);
-    $user = $pdo->getById($userId);
+    $userNewUp = $pdo->getById($userId);
     if (!empty($user)){
-        $response = ["status" => "true", "error" => "null", "user" =>
+        $response = ["status" => true, "error" => "null", "user" =>
             [
                 "id" => $userId,
-                "firstName" => $user['firstName'],
-                "lastName" => $user['lastName'],
-                "role" => $user['role'],
-                "status" => $user['status'],
+                "firstName" => $userNewUp['firstName'],
+                "lastName" => $userNewUp['lastName'],
+                "role" => $userNewUp['role'],
+                "status" => $userNewUp['status'],
             ]
         ];
     }

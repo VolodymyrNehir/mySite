@@ -5,17 +5,15 @@ $(function () {
         const firstName = $('#firstName').val();
         const status = $('.flexSwitchCheckChecked input').is(':checked');
         const role = $('#roleAdd').val();
-        $('.firstNameError').text('')
-        $('.lastNameError').text('')
-        $('.roleError').text('');
+        $('.errorForm').text('');
         $.ajax({
-            url: './Controller/addUser.php',
+            url: './Controller/addUpUsers.php',
             type: 'POST',
             cache: false,
             data: {'userId': userId, 'lastName': lastName, 'firstName': firstName, 'status': status, 'role': role},
             success: function (response) {
                 const data = JSON.parse(response);
-                if (data.status == 'false' && data.error) {
+                if (data.status === false && data.error) {
                     for (const value of data.error) {
                         $(`.${value.field}Error`).text(value.message).css('color', 'red');
                     }
@@ -48,7 +46,7 @@ $(function () {
             <div class="status">
                 <div class="butt ">
                     <button class="btn1 btnEdit "><img src="icons/edit.svg" alt="edit"></button>
-                    <button class="btn2"><img src="icons/svgviewer-output%20(3).svg" alt="trash"></button>
+                    <button class="btn2"><img src="./icons/svgviewer-trash.svg" alt="trash"></button>
                 </div>
             </div>
         </td>
