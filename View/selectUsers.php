@@ -26,7 +26,7 @@ $users = $pdo->selectUsers();
                  <div class="status">
                      <div class="butt ">
                          <button class="btn1 btnEdit " ><img src="./icons/edit.svg" alt="edit" ></button>
-                         <button class="btn2"><img src="./icons/svgviewer-output%20(3).svg" alt="trash"></button>
+                         <button class="btn2"><img src="./icons/svgviewer-trash.svg" alt="trash"></button>
                      </div>
                  </div>
              </td>

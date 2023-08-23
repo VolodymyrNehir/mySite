@@ -12,9 +12,9 @@
 </head>
 <body>
 
-<?php require 'modelWindows/modelWindow.php' ?>
-<?php require 'modelWindows/modelWindowDelete.php' ?>
-<?php require 'modelWindows/modelWindowConfirm.php' ?>
+<?php require './view/modelWindows/modelWindow.php' ?>
+<?php require './view/modelWindows/modelWindowDelete.php' ?>
+<?php require './view/modelWindows/modelWindowConfirm.php' ?>
 
 <div class="wrapper"
     <div class="conteiner">

@@ -39,7 +39,6 @@ $(function () {
             success: function (datas) {
                 $('.select option[value=""]').prop('selected',true)
                const data = JSON.parse(datas)
-                console.log(data)
                     if (data.users){
                         data.users.forEach(item=>{
                             $(`#${item.id}`).attr('status', `${item.status}`);
@@ -48,12 +47,7 @@ $(function () {
                 if (data.error !== null){
                     $('#exampleModalConfirm .modal-body span').text(data.error.message);
                     $("#exampleModalConfirm").modal('show');
-                    data.error.id.forEach(item=>{
-                        $(`#${item}`).remove()
-                    })
-
                 }
-
 
                 $('input[type="checkbox"]').prop('checked', false);
             }
