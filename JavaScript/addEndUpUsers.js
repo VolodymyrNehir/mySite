@@ -68,7 +68,7 @@ $(function () {
         $('.buttonAdd').text('Save user');
         const userId = $(this).closest('tr').attr('id');
         const status = $(`#${userId} `).attr('status');
-        $('#inputHiddenEdit').val(`${userId}`)
+        $('#inputHiddenEdit').val(userId)
         $('.flexSwitchCheckChecked input').prop('checked', `${status}` === 'true')
 
         $('#lastName').val($(`#${userId} .lastName`).text())

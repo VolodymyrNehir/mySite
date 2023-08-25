@@ -16,8 +16,8 @@
 <?php require './view/modelWindows/modelWindowDelete.php' ?>
 <?php require './view/modelWindows/modelWindowConfirm.php' ?>
 
-<div class="wrapper"
-    <div class="conteiner">
+<div class="wrapper">
+    <div class="container">
         <strong>Users</strong>
         <?php require 'View/select.php' ?>
 
@@ -48,7 +48,7 @@
                 integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
                 crossorigin="anonymous"></script>
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 
 

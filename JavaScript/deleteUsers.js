@@ -2,7 +2,7 @@ $(function () {
     $(document).on('click', '.btn2', function () {
         const userId = $(this).closest('tr').attr('id');
         $("#exampleModalDelete").modal('show');
-        $('#inputHiddenDelete').val(`["${userId}"]`)
+        $('#inputHiddenDelete').val(JSON.stringify([userId]))
         const lastName = $(`#${userId} .lastName`).text();
         const firstName = $(`#${userId} .firstName`).text();
         $('#deleteUser').text(`Are you sure want to delete ${lastName} ${firstName}`)

@@ -8,6 +8,8 @@ foreach ($userId as $user) {
     $res =  $pdo->deleteUsers($user);
     if ($res === true){
         $response = ["status" => true, "error" => "null"];
+    } else {
+        $response = ["status" => false, "error" => "error connect database"];
     }
 }
 
