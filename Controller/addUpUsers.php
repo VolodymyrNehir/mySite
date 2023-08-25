@@ -2,8 +2,8 @@
 include_once '../Model/Model.php';
 
 $userId = $_POST['userId'];
-$lastName = trim(filter_var($_POST['lastName'], FILTER_SANITIZE_STRING));
-$firstName = trim(filter_var($_POST['firstName'], FILTER_SANITIZE_STRING));
+$lastName = trim($_POST['lastName']);
+$firstName = trim($_POST['firstName']);
 $status = $_POST['status'];
 $role = $_POST['role'];
 
@@ -12,14 +12,20 @@ $code = '100';
 $pdo = new Model();
 $user = $pdo->getById($userId);
 
-if (empty(strlen($lastName))) {
+if (!preg_match('/^[A-Za-z0-9\-]+$/', $lastName)) {
+    $response[] = ["field" => "lastName", "message" => " Incorrect characters are entered"];
+}
+if (!preg_match('/^[A-Za-z0-9\-]+$/', $firstName)) {
+    $response[] = ["field" => "firstName", "message" => " Incorrect characters are entered"];
+}
+if (empty($lastName)) {
     $response[] = ["field" => "lastName", "message" => " Please fill in your last name"];
 }
-if (empty(strlen($firstName))) {
+if (empty($firstName)) {
     $response[] = ["field" => "firstName", "message" => " Please fill in your first name"];
 
 }
-if (empty(strlen($role))) {
+if (empty($role)) {
     $response[] = ["field" => "role", "message" => " Please select a role"];
 }
 
@@ -44,15 +50,13 @@ if ($userId == '"null"') {
                 "status" => $userNew['status'],
             ]
         ];
-    }
-    else {
-        $response = ["status" => false, "error" => ["code" => "100", "message" => " failed to add user"]]
-        ;
+    } else {
+        $response = ["status" => false, "error" => ["code" => "100", "message" => " failed to add user"]];
     }
 } else {
     $pdo->upUsers($userId, $lastName, $firstName, $role, $status);
     $userNewUp = $pdo->getById($userId);
-    if (!empty($user)){
+    if (!empty($user)) {
         $response = ["status" => true, "error" => "null", "user" =>
             [
                 "id" => $userId,
@@ -65,5 +69,3 @@ if ($userId == '"null"') {
     }
 }
 echo json_encode($response);
-
-
