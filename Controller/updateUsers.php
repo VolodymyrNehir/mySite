@@ -3,11 +3,10 @@ include_once "../Model/Model.php";
 
 $form = $_POST['checkInfo'];
 
-$pdo = new Model();
 $error = null;
 foreach ($form['userId'] as $userId) {
-    $pdo->setAction($userId, $form['select']);
-    $user = $pdo->getById($userId);
+    Model::setAction($userId, $form['select']);
+    $user = Model::getById($userId);
     if (!empty($user)) {
         $response[] =
             [

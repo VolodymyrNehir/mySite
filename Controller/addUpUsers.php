@@ -9,8 +9,7 @@ $role = $_POST['role'];
 
 $errorStatus = 'true';
 $code = '100';
-$pdo = new Model();
-$user = $pdo->getById($userId);
+$user = Model::getById($userId);
 
 if (!preg_match('/^[A-Za-z0-9\-]+$/', $lastName)) {
     $response[] = ["field" => "lastName", "message" => " Incorrect characters are entered"];
@@ -38,8 +37,8 @@ if (!empty($response)) {
 }
 
 if ($userId == '"null"') {
-    $newId = $pdo->addUser($lastName, $firstName, $role, $status);
-    $userNew = $pdo->getById($newId);
+    $newId = Model::addUser($lastName, $firstName, $role, $status);
+    $userNew = Model::getById($newId);
     if (isset($userNew)) {
         $response = ["status" => true, "error" => "null", "user" =>
             [
@@ -54,8 +53,8 @@ if ($userId == '"null"') {
         $response = ["status" => false, "error" => ["code" => "100", "message" => " failed to add user"]];
     }
 } else {
-    $pdo->upUsers($userId, $lastName, $firstName, $role, $status);
-    $userNewUp = $pdo->getById($userId);
+    Model::upUsers($userId, $lastName, $firstName, $role, $status);
+    $userNewUp = Model::getById($userId);
     if (!empty($user)) {
         $response = ["status" => true, "error" => "null", "user" =>
             [
