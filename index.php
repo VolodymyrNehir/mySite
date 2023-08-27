@@ -24,11 +24,11 @@
         <table class="tableUsers">
             <thead>
             <tr>
-                <th><input type="checkbox" id="checkAll" form="select"></th>
+                <th><input type="checkbox" id="checkAll"></th>
                 <th>Name</th>
                 <th>Role</th>
                 <th>status</th>
-                <th>Actions</th>
+            <th>Actions</th>
             </tr>
             </thead>
 

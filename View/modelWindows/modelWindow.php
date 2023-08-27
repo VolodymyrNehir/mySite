@@ -13,12 +13,12 @@
                     <input type="hidden" id="inputHiddenEdit" name="id">
                     <div class="form-group">
                         <label for="recipient-name" class="col-form-label">First name</label><span class="firstNameError errorForm"></span>
-                        <input type="text" class="form-control" id="firstName" name="firstName">
+                        <input type="text" class="form-control" id="firstName" name="firstName" required >
                     </div>
 
                     <div class="form-group">
                         <label for="recipient-name" class="col-form-label">Last name</label><span class="lastNameError errorForm"></span>
-                        <input type="text" class="form-control" id="lastName" name="lastName">
+                        <input type="text" class="form-control" id="lastName" name="lastName" required >
                     </div>
 
                     <div class="flexSwitchCheckChecked">
@@ -30,7 +30,7 @@
                     </div>
 
                     <label>Role </label><span class="roleError errorForm"></span>
-                    <select class="custom-select  my-1 form-select" id="roleAdd">
+                    <select class="custom-select  my-1 form-select" id="roleAdd" required>
                         <option value="">-Please Select-</option>
                         <option value="Admin">Admin</option>
                         <option value="User">User</option>

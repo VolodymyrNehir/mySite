@@ -12,8 +12,7 @@
             <div class="modal-footer">
                 <input type="hidden" id="inputHiddenDelete">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-danger btnDelete"
-                ">Delete</button>
+                <button type="button" class="btn btn-danger btnDelete">Delete</button>
             </div>
         </div>
     </div>
