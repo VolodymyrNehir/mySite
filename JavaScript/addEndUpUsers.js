@@ -1,11 +1,34 @@
+
 $(function () {
     $('.buttonAdd').on('click', function () {
         const userId = $('#inputHiddenEdit').val();
-        const lastName = $('#lastName').val();
-        const firstName = $('#firstName').val();
+        const lastName = $('#lastName').val().trim();
+        const firstName = $('#firstName').val().trim();
         const status = $('.flexSwitchCheckChecked input').is(':checked');
         const role = $('#roleAdd').val();
-        $('.lastNameError, .firstNameError, .roleError').text('');
+        const lastNameError = $('.lastNameError')
+        const firstNameError = $('.firstNameError')
+        const roleError = $('.roleError')
+
+        lastNameError.text('')
+        firstNameError.text('')
+        roleError.text('')
+
+        if (lastName === ''){
+            lastNameError.text(' Please fill in your last name').css('color', 'red');
+        }
+
+        if (firstName === ''){
+            firstNameError.text(' Please fill in your first name').css('color', 'red');
+        }
+
+        if (role === ''){
+            roleError.text(' Please select a role').css('color', 'red');
+        }
+
+        if (lastNameError.text() !== '' || firstNameError.text() !== '' || roleError.text() !== ''){
+            return
+        }
 
         $.ajax({
             url: './Controller/addUpUsers.php',
