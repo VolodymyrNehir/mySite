@@ -2,8 +2,8 @@
 include_once '../Model/Model.php';
 
 $userId = $_POST['userId'];
-$lastName = trim($_POST['lastName']);
-$firstName = trim($_POST['firstName']);
+$lastName = trim(filter_var($_POST['lastName'],FILTER_SANITIZE_STRING));
+$firstName = trim(filter_var($_POST['firstName'], FILTER_SANITIZE_STRING));
 $status = $_POST['status'];
 $role = $_POST['role'];
 
@@ -11,12 +11,6 @@ $errorStatus = 'true';
 $code = '100';
 $user = Model::getById($userId);
 
-if (!preg_match('/^[A-Za-z0-9\-]+$/', $lastName)) {
-    $response[] = ["field" => "lastName", "message" => " Incorrect characters are entered"];
-}
-if (!preg_match('/^[A-Za-z0-9\-]+$/', $firstName)) {
-    $response[] = ["field" => "firstName", "message" => " Incorrect characters are entered"];
-}
 if (empty($lastName)) {
     $response[] = ["field" => "lastName", "message" => " Please fill in your last name"];
 }
