@@ -5,7 +5,8 @@ $(function () {
         const firstName = $('#firstName').val();
         const status = $('.flexSwitchCheckChecked input').is(':checked');
         const role = $('#roleAdd').val();
-        $('.errorForm').text('');
+        $('.lastNameError, .firstNameError, .roleError').text('');
+
         $.ajax({
             url: './Controller/addUpUsers.php',
             type: 'POST',
@@ -63,7 +64,7 @@ $(function () {
 
 
     $(document).on('click', '.btnEdit', function () {
-        $('.errorForm').text('');
+        $('.lastNameError, .firstNameError, .roleError').text('');
         $('#exampleModalLabel').text('Edit user');
         $('.buttonAdd').text('Save user');
         const userId = $(this).closest('tr').attr('id');

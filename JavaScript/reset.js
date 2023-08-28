@@ -5,6 +5,6 @@ $(function () {
         $('.flexSwitchCheckChecked input').prop('checked', false)
         $('#exampleModalLabel').text('Add user')
         $('.buttonAdd').text('Add user');
-        $('.errorForm, .errorWindow').text('');
+        $('.lastNameError, .firstNameError, .roleError, .errorWindow').text('');
     })
 })
