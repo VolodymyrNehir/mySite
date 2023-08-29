@@ -20,17 +20,17 @@ $(function () {
         } else if (check === false) {
             confirmSpan.text('Please select a user');
             exampleModalConfirm.modal('show');
-        } else if (select == 'delete') {
+        } else if (select == '3') {
             confirmH5.text('Delete');
             exampleModalConfirm.modal('show');
             btnDelete.css('display', 'block');
             $('#inputHiddenDelete').val(`${JSON.stringify(userId)}`);
             if (userId.length > 1) {
-                $('#deleteUser').text(`Are you sure want to delete ${userId.length} users`)
+                $('#infoUser').text(`Are you sure want to delete ${userId.length} users`)
             } else {
                 const firstName = $(`#${userId} .firstName`).text();
                 const lastName = $(`#${userId} .lastName`).text();
-                $('#deleteUser').text(`Are you sure want to delete ${firstName} ${lastName}`)
+                $('#infoUser').text(`Are you sure want to delete ${firstName} ${lastName}`)
 
             }
             return
@@ -45,7 +45,7 @@ $(function () {
                 $('.select option[value=""]').prop('selected', true)
                 if (data.users) {
                     data.users.forEach(item => {
-                        $(`#${item.id}`).attr('status', `${item.status}`);
+                        $(`#${item.id}`).attr('status', `${select}`);
                     })
                 }
                 if (data.error !== null) {

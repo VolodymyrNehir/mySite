@@ -1,15 +1,29 @@
 <?php
 include_once '../Model/Model.php';
 
-$userId = intval($_POST['userId']);
-$lastName = trim(filter_var($_POST['lastName'],FILTER_SANITIZE_STRING));
-$firstName = trim(filter_var($_POST['firstName'], FILTER_SANITIZE_STRING));
-$status = $_POST['status'];
-$role = $_POST['role'];
+if ($_SERVER['REQUEST_METHOD'] === 'POST'){
+
+    if (isset($_POST['userId'])){
+        $userId = $_POST['userId'];
+    }
+    if (isset($_POST['lastName'])){
+        $lastName = trim(filter_var($_POST['lastName'],FILTER_SANITIZE_STRING));
+    }
+    if (isset($_POST['firstName'])){
+        $firstName = trim(filter_var($_POST['firstName'], FILTER_SANITIZE_STRING));
+    }
+    if (isset($_POST['status'])){
+        $status = $_POST['status'];
+    }
+    if (isset($_POST['role'])){
+        $role = $_POST['role'];
+    }
+
+
 
 $errorStatus = 'true';
 $code = '100';
-$user = Model::getById($userId);
+$user = Model::getById(intval($userId));
 
 if (empty($lastName)) {
     $response[] = ["field" => "lastName", "message" => " Please fill in your last name"];
@@ -22,7 +36,7 @@ if (empty($role)) {
     $response[] = ["field" => "role", "message" => " Please select a role"];
 }
 
-if (empty($user) && $userId !== '"null"') {
+if (empty($user) && !empty($userId)) {
     $response[] = ["field" => "noFind", "message" => " No found user"];
 }
 
@@ -30,35 +44,32 @@ if (!empty($response)) {
     exit(json_encode(["status" => false, "error" => $response]));
 }
 
-if ($userId == '"null"') {
+if (empty($userId)) {
     $newId = Model::addUser($lastName, $firstName, $role, $status);
-    $userNew = Model::getById($newId);
+    $userNew = Model::getById(intval($newId));
     if (isset($userNew)) {
-        $response = ["status" => true, "error" => "null", "user" =>
+        $response = ["status" => true, "error" => null, "user" =>
             [
                 "id" => $newId,
                 "firstName" => $userNew['firstName'],
                 "lastName" => $userNew['lastName'],
-                "role" => $userNew['role'],
-                "status" => $userNew['status'],
             ]
         ];
     } else {
         $response = ["status" => false, "error" => ["code" => "100", "message" => " failed to add user"]];
     }
 } else {
-    Model::upUsers($userId, $lastName, $firstName, $role, $status);
-    $userNewUp = Model::getById($userId);
+    Model::upUsers(intval($userId), $lastName, $firstName, $role, $status);
+    $userNewUp = Model::getById(intval($userId));
     if (!empty($user)) {
-        $response = ["status" => true, "error" => "null", "user" =>
+        $response = ["status" => true, "error" => null, "user" =>
             [
                 "id" => $userId,
                 "firstName" => $userNewUp['firstName'],
                 "lastName" => $userNewUp['lastName'],
-                "role" => $userNewUp['role'],
-                "status" => $userNewUp['status'],
             ]
         ];
     }
 }
 echo json_encode($response);
+}

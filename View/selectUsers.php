@@ -2,6 +2,7 @@
 include_once 'Model/Model.php';
 $get = $_POST['get'];
 $users = Model::selectUsers();
+$role = [1=>"Admin",2=>"User"];
 ?>
 <?php foreach ($users as $user) : ?>
     <tr id="<?= $user['id'] ?>" status="<?= $user['status'] ?>">
@@ -10,7 +11,7 @@ $users = Model::selectUsers();
             <span scope="col" class="firstName"><?= $user['firstName'] ?></span>
             <span class="lastName"><?= $user['lastName'] ?></span>
         </td>
-        <td class="role"><?= $user['role'] ?></td>
+        <td class="role"><?= $role[$user['role']] ?></td>
         <td>
             <div class="status">
                 <div class="colo"></div>
@@ -19,11 +20,11 @@ $users = Model::selectUsers();
         <td>
             <div class="status">
                 <div class="butt">
-                    <button class="btn1 btnEdit">
-                        <img src="./icons/edit.svg" alt="edit">
+                    <button class="buttonEdit">
+                        <i>Edit</i>
                     </button>
-                    <button class="btn2">
-                        <img src="./icons/svgviewer-trash.svg" alt="trash">
+                    <button class="buttonDelete">
+                        <i class="bi bi-trash3"></i>
                     </button>
                 </div>
             </div>

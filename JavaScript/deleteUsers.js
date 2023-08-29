@@ -1,11 +1,11 @@
 $(function () {
-    $(document).on('click', '.btn2', function () {
+    $(document).on('click', '.buttonDelete', function () {
         const userId = $(this).closest('tr').attr('id');
         $("#exampleModalConfirm").modal('show');
         $('#inputHiddenDelete').val(JSON.stringify([userId]))
         const lastName = $(`#${userId} .lastName`).text();
         const firstName = $(`#${userId} .firstName`).text();
-        $('#deleteUser').text(`Are you sure want to delete ${lastName} ${firstName}`)
+        $('#infoUser').text(`Are you sure want to delete ${lastName} ${firstName}`)
         $("#exampleModalConfirm .btnDelete").css('display', 'block');
         $("#exampleModalConfirm h5").text('Delete')
     })

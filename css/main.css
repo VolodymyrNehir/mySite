@@ -29,7 +29,7 @@ td, th {
     padding: 2%;
 }
 
-[status="true"] .colo {
+[status="1"] .colo {
     background: green;
 }
 
@@ -52,14 +52,21 @@ td, th {
     border: none;
 }
 
-.btn1 {
+.buttonEdit {
     border: 2px solid silver;
     border-radius: 10% 0 0 10%;
     background: none;
     border-right: 0;
-}
 
-.btn2 {
+}
+.buttonEdit i, .buttonDelete i{
+    font-size:16px;
+    color: gray;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    font-style: normal;
+}
+.buttonDelete {
     border: 2px solid silver;
     border-radius: 0 10% 10% 0;
     background: none;
@@ -89,7 +96,4 @@ td, th {
 }
 .myModal-footer>*{
     margin: 0.25rem
-}
-.btnDelete{
-    display: none;
 }

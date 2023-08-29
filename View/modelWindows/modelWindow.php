@@ -12,28 +12,28 @@
                 <form id="addEditForm">
                     <input type="hidden" id="inputHiddenEdit" name="id">
                     <div class="form-group">
-                        <label for="recipient-name" class="col-form-label">First name</label><span class="firstNameError"></span>
+                        <label for="firstName" class="col-form-label">First name</label><span class="firstNameError"></span>
                         <input type="text" class="form-control" id="firstName" name="firstName" required >
                     </div>
 
                     <div class="form-group">
-                        <label for="recipient-name" class="col-form-label">Last name</label><span class="lastNameError"></span>
+                        <label for="lastName" class="col-form-label">Last name</label><span class="lastNameError"></span>
                         <input type="text" class="form-control" id="lastName" name="lastName" required >
                     </div>
 
-                    <div class="flexSwitchCheckChecked">
+                    <div class="switchCheck">
                         <span>Status</span>
                         <div class="form-check form-switch ">
-                            <label class="form-check-label" for="flexSwitchCheckChecked"></label>
-                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" name="status">
+                            <label class="form-check-label" for="SwitchCheck"></label>
+                            <input class="form-check-input" type="checkbox" id="switchCheck" name="status">
                         </div>
                     </div>
 
                     <label>Role </label><span class="roleError"></span>
                     <select class="custom-select  my-1 form-select" id="roleAdd" required>
                         <option value="">-Please Select-</option>
-                        <option value="Admin">Admin</option>
-                        <option value="User">User</option>
+                        <option value="1">Admin</option>
+                        <option value="2">User</option>
                     </select>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal" data-bs-dismiss="modal">

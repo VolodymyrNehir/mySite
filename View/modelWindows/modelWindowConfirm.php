@@ -7,7 +7,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <span id="deleteUser"></span>
+                <span id="infoUser"></span>
             </div>
             <div class="modal-footer">
                 <input type="hidden" id="inputHiddenDelete">
