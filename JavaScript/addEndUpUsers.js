@@ -43,7 +43,6 @@ $(function () {
             data: {'userId': userId, 'lastName': lastName, 'firstName': firstName, 'status': status, 'role': role},
             dataType: 'JSON',
             success: function (data) {
-                console.log(data);
                 if (data.status === false && data.error) {
                     for (const value of data.error) {
                         $(`.${value.field}Error`).text(value.message).css('color', 'red');

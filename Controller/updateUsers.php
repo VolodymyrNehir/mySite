@@ -1,7 +1,12 @@
 <?php
 include_once "../Model/Model.php";
 
-$form = $_POST['checkInfo'];
+if ($_SERVER['REQUEST_METHOD'] === 'POST'){
+
+if (isset($_POST['checkInfo'])){
+    $form = $_POST['checkInfo'];
+}
+
 
 $error = null;
 foreach ($form['userId'] as $userId) {
@@ -25,3 +30,4 @@ if (empty($response)) {
     echo json_encode(["status" => false, "error" => $error]);
 }
 
+}
