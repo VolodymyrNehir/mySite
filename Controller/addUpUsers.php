@@ -1,7 +1,7 @@
 <?php
 include_once '../Model/Model.php';
 
-$userId = $_POST['userId'];
+$userId = intval($_POST['userId']);
 $lastName = trim(filter_var($_POST['lastName'],FILTER_SANITIZE_STRING));
 $firstName = trim(filter_var($_POST['firstName'], FILTER_SANITIZE_STRING));
 $status = $_POST['status'];

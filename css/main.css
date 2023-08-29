@@ -90,3 +90,6 @@ td, th {
 .myModal-footer>*{
     margin: 0.25rem
 }
+.btnDelete{
+    display: none;
+}

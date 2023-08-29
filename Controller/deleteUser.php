@@ -3,7 +3,7 @@ include_once '../Model/Model.php';
 
 $userId = $_POST['userId'];
 
-foreach ($userId as $user) {
+foreach ($userId as  $user) {
     $res =  Model::deleteUsers($user);
     if ($res === true){
         $response = ["status" => true, "error" => "null"];

@@ -35,8 +35,9 @@ $(function () {
             type: 'POST',
             cache: false,
             data: {'userId': userId, 'lastName': lastName, 'firstName': firstName, 'status': status, 'role': role},
-            success: function (response) {
-                const data = JSON.parse(response);
+            dataType: 'JSON',
+            success: function (data) {
+                console.log(data);
                 if (data.status === false && data.error) {
                     for (const value of data.error) {
                         $(`.${value.field}Error`).text(value.message).css('color', 'red');
