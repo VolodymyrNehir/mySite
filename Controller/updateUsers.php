@@ -10,8 +10,8 @@ if (isset($_POST['checkInfo'])){
 
 $error = null;
 foreach ($form['userId'] as $userId) {
-    Model::setAction(intval($userId), $form['select']);
-    $user = Model::getById(intval($userId));
+    Model::setAction($userId, $form['select']);
+    $user = Model::getById($userId);
     if (!empty($user)) {
         $response[] =
             [

@@ -6,7 +6,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     foreach ($userId as $user) {
-        $res = Model::deleteUsers(intval($user));
+        $res = Model::deleteUsers($user);
         if ($res === true) {
             $response = ["status" => true, "error" => null];
         } else {
