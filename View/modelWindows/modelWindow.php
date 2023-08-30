@@ -29,7 +29,7 @@
                         </div>
                     </div>
 
-                    <label>Role </label><span class="roleError"></span>
+                    <label>Role</label><span class="roleError"></span>
                     <select class="custom-select  my-1 form-select" id="roleAdd" required>
                         <option value="">-Please Select-</option>
                         <option value="1">Admin</option>

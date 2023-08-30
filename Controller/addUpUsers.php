@@ -5,18 +5,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
 
     if (isset($_POST['userId'])){
         $userId = $_POST['userId'];
+    } else{
+        $userId = '';
     }
     if (isset($_POST['lastName'])){
         $lastName = trim(filter_var($_POST['lastName'],FILTER_SANITIZE_STRING));
+    } else {
+        $lastName = '';
     }
     if (isset($_POST['firstName'])){
-        $firstName = trim(filter_var($_POST['firstName'], FILTER_SANITIZE_STRING));
+         trim(filter_var($_POST['firstName'], FILTER_SANITIZE_STRING));
+    } else {
+        $firstName = '';
     }
     if (isset($_POST['status'])){
         $status = $_POST['status'];
+    } else {
+        $status = '';
     }
     if (isset($_POST['role'])){
         $role = $_POST['role'];
+    } else {
+        $role = '';
     }
 
 
