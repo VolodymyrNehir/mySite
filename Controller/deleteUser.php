@@ -8,10 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     foreach ($userId as $user) {
-        if (is_numeric($user)){
             $res = Model::deleteUsers($user);
-        }
-
         if ($res === true) {
             $response = ["status" => true, "error" => null];
         } else {

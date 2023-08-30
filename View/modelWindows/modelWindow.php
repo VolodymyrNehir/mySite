@@ -21,11 +21,11 @@
                         <input type="text" class="form-control" id="lastName" name="lastName" required >
                     </div>
 
-                    <div class="switchCheck">
+                    <div class="switchStatus">
                         <span>Status</span>
                         <div class="form-check form-switch ">
-                            <label class="form-check-label" for="SwitchCheck"></label>
-                            <input class="form-check-input" type="checkbox" id="switchCheck" name="status">
+                            <label class="form-check-label" for="switchStatus"></label>
+                            <input class="form-check-input" type="checkbox" id="switchStatus" name="status">
                         </div>
                     </div>
 

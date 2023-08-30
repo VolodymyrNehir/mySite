@@ -17,7 +17,7 @@ $(function () {
             type: 'POST',
             cache: false,
             data: {"userId": userId},
-            dataType: 'JSON',
+            dataType: 'json',
             success(data) {
                 userId.forEach(item => {
                     if (data.status === true){

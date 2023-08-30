@@ -40,7 +40,7 @@ $(function () {
             type: 'POST',
             cache: false,
             data: {'checkInfo': {'userId': userId, 'select': select}},
-            dataType: 'JSON',
+            dataType: 'json',
             success: function (data) {
                 $('.select option[value=""]').prop('selected', true)
                 if (data.users) {

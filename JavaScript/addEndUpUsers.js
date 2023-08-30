@@ -3,7 +3,7 @@ $(function () {
         const userId = $('#inputHiddenEdit').val();
         const lastName = $('#lastName').val().trim();
         const firstName = $('#firstName').val().trim();
-        let status = $('.switchCheck input').is(':checked');
+        let status = $('.switchStatus input').is(':checked');
         const role = $('#roleAdd').val();
         const lastNameError = $('.lastNameError')
         const firstNameError = $('.firstNameError')
@@ -34,15 +34,16 @@ $(function () {
         if (lastNameError.text() !== '' || firstNameError.text() !== '' || roleError.text() !== '') {
             return
         }
-        console.log(userId)
+
 
         $.ajax({
             url: './Controller/addUpUsers.php',
             type: 'POST',
             cache: false,
             data: {'userId': userId, 'lastName': lastName, 'firstName': firstName, 'status': status, 'role': role},
-            dataType: 'JSON',
+            dataType: 'json',
             success: function (data) {
+                console.log(data);
                 if (data.status === false && data.error) {
                     for (const value of data.error) {
                         $(`.${value.field}Error`).text(value.message).css('color', 'red');
@@ -100,7 +101,7 @@ $(function () {
         const userId = $(this).closest('tr').attr('id');
         const status = $(`#${userId} `).attr('status');
         $('#inputHiddenEdit').val(userId)
-        $('.switchCheck input').prop('checked', `${status}` === '1')
+        $('.switchStatus input').prop('checked', `${status}` === '1')
         $('#lastName').val($(`#${userId} .lastName`).text())
         $('#firstName').val($(`#${userId} .firstName`).text())
         let role = 0;

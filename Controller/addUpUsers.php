@@ -9,20 +9,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
     $status = '';
     $role = '';
 
-    if (isset($_POST['userId']) && is_numeric($_POST['userId'])){
-        $userId = $_POST['userId'];
+    if (isset($_POST['userId'])){
+        $userId = (int) $_POST['userId'];
     }
     if (isset($_POST['lastName'])){
-        $lastName = trim(filter_var($_POST['lastName'],FILTER_SANITIZE_STRING));
+        $lastName = htmlspecialchars(trim(strip_tags($_POST['lastName'])),ENT_QUOTES);
     }
     if (isset($_POST['firstName'])){
-        $firstName =  trim(filter_var($_POST['firstName'], FILTER_SANITIZE_STRING));
+        $firstName =  htmlspecialchars(trim(strip_tags($_POST['firstName'])),ENT_QUOTES);
     }
-    if (isset($_POST['status']) && is_numeric($_POST['status'])){
-        $status = $_POST['status'];
+    if (isset($_POST['status'])){
+        $status = (int) $_POST['status'];
     }
-    if (isset($_POST['role']) && is_numeric($_POST['role'])){
-        $role = $_POST['role'];
+    if (isset($_POST['role'])){
+        $role = (int) $_POST['role'];
     }
 
 $errorStatus = 'true';
@@ -55,8 +55,8 @@ if (empty($userId)) {
         $response = ["status" => true, "error" => null, "user" =>
             [
                 "id" => $newId,
-                "firstName" => $userNew['firstName'],
-                "lastName" => $userNew['lastName'],
+                "firstName" => html_entity_decode($userNew['firstName'],ENT_QUOTES),
+                "lastName" => html_entity_decode($userNew['lastName'],ENT_QUOTES),
             ]
         ];
     } else {
@@ -69,8 +69,8 @@ if (empty($userId)) {
         $response = ["status" => true, "error" => null, "user" =>
             [
                 "id" => $userId,
-                "firstName" => $userNewUp['firstName'],
-                "lastName" => $userNewUp['lastName'],
+                "firstName" => html_entity_decode($userNewUp['firstName'],ENT_QUOTES),
+                "lastName" => html_entity_decode($userNewUp['lastName'],ENT_QUOTES),
             ]
         ];
     }

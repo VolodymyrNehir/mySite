@@ -15,7 +15,10 @@
 
 <?php require './view/modelWindows/modelWindow.php' ?>
 <?php require './view/modelWindows/modelWindowConfirm.php' ?>
+<?php
 
+echo isset($hhy);
+?>
 <div class="wrapper">
     <div class="container">
         <strong>Users</strong>

@@ -22,7 +22,8 @@ class Model
     public static function getById($id)
     {
         $query = self::pdo()->prepare("SELECT * FROM `" . self::TABLE . "` WHERE `" . self::TABLE . "`.`id` = :id");
-        $query->execute(['id'=> $id]);
+        $query->bindParam(':id', $id,PDO::PARAM_INT);
+        $query->execute();
         $arr = $query->fetchAll(PDO::FETCH_ASSOC);
         foreach ($arr as $user ){
             return $user;
@@ -33,9 +34,9 @@ class Model
     public static function addUser($lastName, $firstName, $role, $status)
     {
         $pdo = self::pdo();
-        $sql = "INSERT INTO `" . self::TABLE . "` (`id`, `lastName`, `firstName`, `role`, `status`) VALUES (NULL, :lastName, :firstName, :role, :status)";
+        $sql = "INSERT INTO `" . self::TABLE . "` (`id`, `lastName`, `firstName`, `role`, `status`) VALUES (NULL, ?, ?, ?, ?)";
         $prepare = $pdo->prepare($sql);
-        $prepare->execute(['lastName'=> $lastName, 'firstName'=> $firstName, 'role' => $role, 'status'=> $status]);
+        $prepare->execute([$lastName, $firstName, $role, $status]);
         return $pdo->lastInsertId();
     }
 
@@ -43,21 +44,24 @@ class Model
     {
         $sql = "DELETE FROM `" . self::TABLE . "` WHERE `" . self::TABLE . "`.`id` = :id";
         $prepare = self::pdo()->prepare($sql);
-        return $prepare->execute(['id'=> $id]);
+        $prepare->bindParam(':id', $id,PDO::PARAM_INT);
+        return $prepare->execute();
     }
 
     public static function upUsers($id, $lastName, $firstName, $role, $status)
     {
-        $sql = "UPDATE `" . self::TABLE . "` SET `lastName` = :lastName, `firstName` = :firstName, `role` = :role, `status` = :status WHERE `" . self::TABLE . "`.`id` = :id";
+        $sql = "UPDATE `" . self::TABLE . "` SET `lastName` = ?, `firstName` = ?, `role` = ?, `status` = ? WHERE `" . self::TABLE . "`.`id` = ?";
         $prepare = self::pdo()->prepare($sql);
-        $prepare->execute(['lastName'=> $lastName, 'firstName'=> $firstName, 'role' => $role, 'status'=> $status, 'id'=> $id]);
+        $prepare->execute([$lastName, $firstName, $role, $status, $id]);
     }
 
     public static function setAction($id, $status)
     {
-        $sql = "UPDATE `" . self::TABLE . "` SET `status` = status WHERE `" . self::TABLE . "`.`id` = id'";
+        $sql = "UPDATE `" . self::TABLE . "` SET `status` = :status WHERE `" . self::TABLE . "`.`id` = :id";
         $prepare = self::pdo()->prepare($sql);
-        $prepare->execute(['status'=> $status, 'id'=> $id]);
+        $prepare->bindParam(':id', $id,PDO::PARAM_INT);
+        $prepare->bindParam(':status', $status,PDO::PARAM_INT);
+        $prepare->execute();
     }
 
     public static function selectUsers()
