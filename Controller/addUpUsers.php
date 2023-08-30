@@ -18,12 +18,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
     } else {
         $firstName = '';
     }
-    if (isset($_POST['status'])){
+    if (isset($_POST['status']) && is_numeric($_POST['status'])){
         $status = $_POST['status'];
     } else {
         $status = '';
     }
-    if (isset($_POST['role'])){
+    if (isset($_POST['role']) && is_numeric($_POST['role'])){
         $role = $_POST['role'];
     } else {
         $role = '';

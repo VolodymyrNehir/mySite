@@ -9,9 +9,13 @@ if (isset($_POST['checkInfo'])){
 
 
 $error = null;
+$user = '';
 foreach ($form['userId'] as $userId) {
-    Model::setAction($userId, $form['select']);
-    $user = Model::getById($userId);
+    if (is_numeric($userId)){
+        Model::setAction($userId, $form['select']);
+        $user = Model::getById($userId);
+    }
+
     if (!empty($user)) {
         $response[] =
             [
