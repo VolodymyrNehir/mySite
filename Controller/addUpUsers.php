@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
         $lastName = '';
     }
     if (isset($_POST['firstName'])){
-         trim(filter_var($_POST['firstName'], FILTER_SANITIZE_STRING));
+        $firstName =  trim(filter_var($_POST['firstName'], FILTER_SANITIZE_STRING));
     } else {
         $firstName = '';
     }
