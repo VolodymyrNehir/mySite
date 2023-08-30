@@ -1,7 +1,7 @@
 <?php
 include_once '../Model/Model.php';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $userId = '';
+    $userId = [];
     $res = false;
     if (isset($_POST['userId'])) {
         $userId = $_POST['userId'];
