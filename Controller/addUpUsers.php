@@ -3,7 +3,7 @@ include_once '../Model/Model.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST'){
 
-    if (isset($_POST['userId'])){
+    if (isset($_POST['userId']) && is_numeric($_POST['userId'])){
         $userId = $_POST['userId'];
     } else{
         $userId = '';
@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
 
 $errorStatus = 'true';
 $code = '100';
-$user = Model::getById(intval($userId));
+$user = Model::getById($userId);
 
 if (empty($lastName)) {
     $response[] = ["field" => "lastName", "message" => " Please fill in your last name"];
@@ -56,7 +56,7 @@ if (!empty($response)) {
 
 if (empty($userId)) {
     $newId = Model::addUser($lastName, $firstName, $role, $status);
-    $userNew = Model::getById(intval($newId));
+    $userNew = Model::getById($newId);
     if (isset($userNew)) {
         $response = ["status" => true, "error" => null, "user" =>
             [
@@ -69,8 +69,8 @@ if (empty($userId)) {
         $response = ["status" => false, "error" => ["code" => "100", "message" => " failed to add user"]];
     }
 } else {
-    Model::upUsers(intval($userId), $lastName, $firstName, $role, $status);
-    $userNewUp = Model::getById(intval($userId));
+    Model::upUsers($userId, $lastName, $firstName, $role, $status);
+    $userNewUp = Model::getById($userId);
     if (!empty($user)) {
         $response = ["status" => true, "error" => null, "user" =>
             [
