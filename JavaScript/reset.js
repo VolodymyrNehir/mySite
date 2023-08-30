@@ -1,6 +1,6 @@
 $(function () {
     $('.butReset').on('click', function () {
-        $('#inputHiddenEdit').val(null);
+        $('#inputHiddenEdit').val('');
         $('#addEditForm input[type=text], #addEditForm select').val('');
         $('.switchCheck input').prop('checked', false)
         $('#exampleModalLabel').text('Add user')

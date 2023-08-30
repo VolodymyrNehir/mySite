@@ -60,7 +60,7 @@ $(function () {
                     }
 
                     $('tbody').append(`
-    <tr id="${data.user.id}" status="${data.user.status}">
+    <tr id="${data.user.id}" status="${status}">
         <th><input type="checkbox" class="check" ${checked}></th>
         <td>
             <span scope="col" class="firstName">${data.user.firstName}</span>
@@ -68,7 +68,7 @@ $(function () {
         </td>
         <td class="role">${roleArr[role -1]}</td>
         <td>
-            <div class="status" status="${status}">
+            <div class="status">
                 <div class="colo">
                 </div>
             </div>
