@@ -22,6 +22,7 @@ $(function () {
                 userId.forEach(item => {
                     if (data.status === true){
                         $(`#${item}`).remove();
+                        $('.select option[value=""]').prop('selected', true)
                     }
                 })
                 const isAtLeastOneChecked = $(".check:checked").length == $('.check').length;
