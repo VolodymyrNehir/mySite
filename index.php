@@ -53,7 +53,7 @@
 
 
 <script src="JavaScript/addEndUpUsers.js"></script>
-<script src="JavaScript/check.js"></script>
+<script src="JavaScript/checkBox.js"></script>
 <script src="JavaScript/deleteUsers.js"></script>
 <script src="JavaScript/reset.js"></script>
 <script src="JavaScript/select.js"></script>
